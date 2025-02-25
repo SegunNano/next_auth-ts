@@ -1,9 +1,45 @@
 'use server'
 
+import { signIn } from "@/auth"
 import connectDB from "@/config/db"
 import User from "@/models/user"
 import bcrypt from "bcryptjs"
+import { CredentialsSignin } from "next-auth"
 import { redirect } from "next/navigation"
+
+const loginFunc = async (email: string, password: string) => {
+    try {
+        await signIn('local', {
+            redirect: false,
+            callbackUrl: '/',
+            email,
+            password
+        })
+    } catch (error) {
+        const err = error as CredentialsSignin
+        return err.cause
+    }
+    console.log(`${email} has logged in`)
+    redirect('/')
+}
+
+const login = async (formData: FormData) => {
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    try {
+        await signIn('local', {
+            redirect: false,
+            callbackUrl: '/',
+            email,
+            password
+        })
+    } catch (error) {
+        const err = error as CredentialsSignin
+        return err.cause
+    }
+    console.log(`${email} has logged in`)
+    redirect('/')
+}
 
 const register = async (formData: FormData) => {
     const { hash } = bcrypt
@@ -24,8 +60,10 @@ const register = async (formData: FormData) => {
 
     console.log('User succesfully created!')
 
-    redirect('/login')
+
+    //login user Immedaitelly
+    // loginFunc(email, password)
 }
 
 
-export { register }
+export { register, login }

@@ -32,7 +32,7 @@ const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) =>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                         <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                     </div>
-                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-6 text-center me-2 mb-2 w-full ">{type} your account</button>
+                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-3 text-center me-2 mb-2 w-full ">{type} your account</button>
                     {type === 'Sign Up' ? (
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">Already have an account? <Link href="/login" className="text-blue-700 hover:underline dark:text-blue-500">Login</Link >
                         </div>
@@ -46,7 +46,7 @@ const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) =>
                             <div className="flex items-start">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
-                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
@@ -58,13 +58,13 @@ const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) =>
                     )}
                 </form>
                 <form>
-                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-6 text-center me-2 mb-2 w-full ">
+                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-3 text-center me-2 mb-2 w-full ">
                         <Github />
                         <span>Github</span>
                     </button>
                 </form>
                 <form>
-                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-6 text-center me-2 mb-2 w-full ">
+                    <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-3 text-center me-2 mb-2 w-full ">
                         <Google />
                         <span>Google</span>
                     </button>
