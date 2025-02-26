@@ -54,7 +54,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     callbacks: {
         async session({ session, token }) {
-            if (token?.sub) session.user.id = token.sub
+            console.log({ session })
+            if (token?.sub) session.user.id = token.sub;
+            if (typeof token?.isAdmin === "boolean") {
+                session.user.isAdmin = token.isAdmin;
+            } else {
+                session.user.isAdmin = undefined; // Ensure it remains type-safe
+            }
+            return session
+        },
+        async jwt({ token, user }) {
+            if (user) token.isAdmin = user.isAdmin
+            return token
+        },
+        signIn: async ({ user, account }) => {
+            if (account?.provider === 'google') {
+                try {
+                    const { email, id, image, name } = user
+                    await connectDB()
+                    const existingUser = await User.findOne({ email })
+
+                    if (!existingUser) await User.create({ email, name, image, authProviderId: id })
+                    else {
+                        return true
+                    }
+                } catch (err) {
+                    throw new Error('Error while creating user!')
+                }
+            }
+            if (account?.provider === 'github') {
+                return true
+            } else {
+                return false
+            }
         }
     }
 }) 

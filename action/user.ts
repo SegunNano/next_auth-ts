@@ -1,6 +1,6 @@
 'use server'
 
-import { signIn } from "@/auth"
+import { signIn, signOut } from "@/auth"
 import connectDB from "@/config/db"
 import User from "@/models/user"
 import bcrypt from "bcryptjs"
@@ -72,5 +72,9 @@ const google = async () => {
     await signIn('google')
 }
 
+const logout = async () => {
+    await signOut()
+}
 
-export { register, login, github, google }
+
+export { register, login, github, google, logout }

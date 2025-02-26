@@ -2,9 +2,16 @@ import React from 'react'
 import Link from 'next/link'
 import { Github, Google } from './ui/svg'
 import { github, google } from '@/action/user'
+import { redirect } from 'next/navigation'
+import getSession from '@/utils/getSession'
 
 
-const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) => {
+const Form = async ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) => {
+    const session = await getSession()
+    const userInfo = session?.user
+
+    if (userInfo) redirect('/')
+
     return (
         <div>
             <div className="mt-10 mx-auto w-full max-w-md  p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
