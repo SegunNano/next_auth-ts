@@ -65,5 +65,12 @@ const register = async (formData: FormData) => {
     // loginFunc(email, password)
 }
 
+const github = async () => {
+    await signIn('github')
+}
+const google = async () => {
+    await signIn('google')
+}
 
-export { register, login }
+
+export { register, login, github, google }

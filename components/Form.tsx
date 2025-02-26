@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Github, Google } from './ui/svg'
+import { github, google } from '@/action/user'
 
 
 const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) => {
@@ -57,13 +58,13 @@ const Form = ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) =>
                         </>
                     )}
                 </form>
-                <form>
+                <form action={github}>
                     <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-3 text-center me-2 mb-2 w-full ">
                         <Github />
                         <span>Github</span>
                     </button>
                 </form>
-                <form>
+                <form action={google}>
                     <button type="submit" className="text-white bg-gradient-to-r from-blue-500  font-medium inline-flex items-center via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg text-sm p-3 text-center me-2 mb-2 w-full ">
                         <Google />
                         <span>Google</span>
