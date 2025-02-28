@@ -27,7 +27,7 @@ const login = async (formData: FormData) => {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
     try {
-        await signIn('local', {
+        await signIn('credentials', {
             redirect: false,
             callbackUrl: '/',
             email,

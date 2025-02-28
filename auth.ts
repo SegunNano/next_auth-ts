@@ -5,6 +5,8 @@ import Google from "next-auth/providers/google"
 import connectDB from "./config/db"
 import User from "./models/user"
 import bcrypt from "bcryptjs"
+import type { JWT } from "next-auth/jwt";
+
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
@@ -32,11 +34,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 const user = await User.findOne({ email }).select('+password +isAdmin')
 
-                if (!(user && user.password)) throw new Error('Invalid email or password!')
+                if (!(user && user.password)) throw new Error('Invalid email or password 1!')
 
                 const isPasswordMatch = await bcrypt.compare(password, user.password)
+                console.log(password, user.password, isPasswordMatch)
 
-                if (!isPasswordMatch) throw new Error('Invalid email or password!')
+                if (!isPasswordMatch) throw new Error('Invalid email or password 2!')
 
                 const userData = {
                     firstName: user.firstName,
@@ -45,6 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     isAdmin: user.isAdmin,
                     id: user._id,
                 }
+                console.log(userData)
                 return userData;
             }
         })
@@ -53,8 +57,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         signIn: '/login'
     },
     callbacks: {
+
         async session({ session, token }) {
-            console.log({ session })
+            console.log({ token })
             if (token?.sub) session.user.id = token.sub;
             if (typeof token?.isAdmin === "boolean") {
                 session.user.isAdmin = token.isAdmin;
@@ -68,6 +73,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return token
         },
         signIn: async ({ user, account }) => {
+            console.log({ user, account })
             if (account?.provider === 'google') {
                 try {
                     const { email, id, image, name } = user
@@ -75,18 +81,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     const existingUser = await User.findOne({ email })
 
                     if (!existingUser) await User.create({ email, name, image, authProviderId: id })
-                    else {
-                        return true
-                    }
+                    else return true
                 } catch (err) {
                     throw new Error('Error while creating user!')
                 }
             }
-            if (account?.provider === 'github') {
-                return true
-            } else {
-                return false
-            }
+
+            if (account?.provider === 'credentials') return true
+            if (account?.provider === 'github') return true
+            else return false
+
         }
     }
 }) 

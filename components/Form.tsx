@@ -9,6 +9,7 @@ import getSession from '@/utils/getSession'
 const Form = async ({ type, action }: { type: 'Sign In' | 'Sign Up', action: any }) => {
     const session = await getSession()
     const userInfo = session?.user
+    console.log(userInfo, session)
 
     if (userInfo) redirect('/')
 
